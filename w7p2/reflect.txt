@@ -1,0 +1,148 @@
+/*
+Name: Keith Carlos
+Section: NBB
+Email: kwcarlos@myseneca.ca
+Student ID: 127638211
+
+I have done all the coding by myself and only copied the code that my professor
+provided to complete my workshops and assignments.
+*/
+
+Upon completing this workshop, I have learned how to use the algorithm library of C++ and to add a 
+callback function inside a function. The libraries I have used in this workshop are the numeric library and 
+the algorithm library. The STL functions that I have used in this workshop are std::copy for displaying the 
+crimes data without for loop. I used copy because the third parameter allows me to use the insertion 
+operator that I overloaded to print the crimes data, example in this workshop: 
+std::copy(m_crimes.begin(), m_crimes.end(), std::ostream_iterator<Crime>(out, "\n"));. 
+
+I use std::accumulate to get the total crimes and resolved cases in the file. I chose this because it 
+obviously is the right function to do the task as it accumulates based on the callback function, an 
+example(s) in this workshop:  
+
+int totalCrimes = std::accumulate(m_crimes.begin(), m_crimes.end(), 0, [](int sum, const Crime& crime) { 
+
+		return sum + crime.m_numCases; 
+
+		}); 
+
+int resolvedCases = std::accumulate(m_crimes.begin(), m_crimes.end(), 0, [](int sum, const Crime& crime) { 
+
+		return sum + crime.m_resolved; 
+
+		}); 
+
+ 
+
+In the sort function, I used std::sort to sort the data (ascending) based on the parameter, eg. “province”. 
+I used this function because just like std::accumulate, it is the right function to do the task, an example 
+in this workshop: 
+
+if (fieldName == "Province") { 
+
+		std::sort(m_crimes.begin(), m_crimes.end(), [](const Crime& crime1, const Crime& crime2) { 
+
+		    return crime1.m_province < crime2.m_province; 
+
+		    }); 
+
+	  } 
+
+	  else if (fieldName == "Crime") { 
+
+		std::sort(m_crimes.begin(), m_crimes.end(), [](const Crime& crime1, const Crime& crime2) { 
+
+		    return crime1.m_crime < crime2.m_crime; 
+
+		    }); 
+
+	  } 
+
+	  else if (fieldName == "Cases") { 
+
+		std::sort(m_crimes.begin(), m_crimes.end(), [](const Crime& crime1, const Crime& crime2) { 
+
+		    return crime1.m_numCases < crime2.m_numCases; 
+
+		    }); 
+
+	  } 
+
+	  else if (fieldName == "Resolved") { 
+
+		std::sort(m_crimes.begin(), m_crimes.end(), [](const Crime& crime1, const Crime& crime2) { 
+
+		    return crime1.m_resolved < crime2.m_resolved; 
+
+		    }); 
+
+	  } 
+
+ 
+
+In the cleanList function, I used std::count_if to check if the crime type is “[None]” and if it’s none then I
+ emptied the string. I used this function because it modifies the contents of the vector based on the 
+given callback function, an example in this workshop: 
+
+static_cast<void>(std::count_if(m_crimes.begin(), m_crimes.end(), [](Crime& crime) { 
+
+		bool none = false; 
+
+		if (crime.m_crime == "[None]") { 
+
+		    crime.m_crime = ""; 
+
+		    none = true; 
+
+		} 
+
+  
+
+		return none; 
+
+		})); 
+
+Note: I used static_cast<void> to ignore the return value. 
+
+ 
+
+In the inCollection function, I used std::any_of to check id any crime in the vector of crimes is equal to 
+the parameter. I used std::any_of because it checks if any of the elements in the struct Crime satisfies 
+the callback function’s condition, an example in this workshop: 
+
+std::any_of(m_crimes.begin(), m_crimes.end(), [=](const Crime& crime) { 
+
+		return crime.m_crime == crimeName; 
+
+		}); 
+
+ 
+
+In the getListProvince function, I used std::copy_if to copy the elements that satisfies the condition in 
+the callback function to the new empty list. First, I sized the new empty list to the size of the vector and 
+put it in the std::copy_if argument and I resized the list to the number of results, an example in this 
+workshop: 
+
+std::list<Crime> result(m_crimes.size()); 
+
+  
+
+	  auto numResults = std::copy_if(m_crimes.begin(), m_crimes.end(), result.begin(), [=] (const Crime& crime) { 
+
+		return crime.m_province == provinceName; 
+
+		}); 
+
+  
+
+	  result.resize(std::distance(result.begin(), numResults));//resize array to number of results 
+
+ 
+
+The advantage of using the STL algorithms is that it makes it easier to sort and query data rather than 
+implementing our own function. It makes the code cleaner and shorter, plus it is easy to use. 
+
+ 
+
+In the getListProvince function, it is indeed easy for the client to make an error if they make any mistake, 
+to avoid this, we can throw in an exception if the client enters a wrong string of argument so that 
+the program will not crash.   

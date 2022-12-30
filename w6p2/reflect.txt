@@ -1,0 +1,111 @@
+/*
+Name: Keith Carlos
+Section: NBB
+Email: kwcarlos@myseneca.ca
+Student ID: 127638211
+
+I have done all the coding by myself and only copied the code that my professor
+provided to complete my workshops and assignments.
+*/
+
+In this workshop, I have learned how to use a vector, list, and an STL iterator. I also learned how 
+to implement a nested catch to catch different types of exception. A vector is a container in C++ that 
+changes its size depending on the contents of the vector. Unlike dynamic arrays, you don’t need to 
+increase its size every time you add an element and what’s more amazing is that it comes with helpful 
+functions that let you add and or delete an element. An example of a vector in this workshop: 
+std::vector<Vehicle*> m_vehicles;. From what I have learned so far in this workshop, a list is similar to a 
+vector, and they are both efficient and a great substitute for dynamic/static arrays. 
+
+ 
+
+In my understanding of vectors so far, a vector does not need to be deallocated, but since we 
+are adding an instance of an object in a vector and it is dynamic, obviously you need to deallocate it to 
+prevent memory leak and to deallocate every instance created throughout the program.  
+
+The function loadData() can detect what went wrong because we are throwing an exception 
+when we extract an invalid character from the input stream on the create instance function. The one 
+solution that I can come up with other than the solution that I have implemented is to completely ignore 
+the line with an invalid record, but I think throwing an exception is the better way to let the client know 
+that an error has occurred. This is the createInstance function and how I throw an exception if it’s an 
+invalid record: 
+
+Vehicle* createInstance(std::istream& in) { 
+
+	  Vehicle* vehicle = nullptr; 
+
+	  char type = '\0'; 
+
+  
+
+	  in >> type; 
+
+	  if (type == '\0') return nullptr; 
+
+	  //std::cout << type << std::endl; 
+
+	switch (type) { 
+
+		case 'C': 
+
+		case 'c': 
+
+		    in.putback(type); 
+
+		    vehicle = new Car(in); 
+
+		    break; 
+
+		case 'V': 
+
+		case 'v': 
+
+		    in.putback(type); 
+
+		    vehicle = new Van(in); 
+
+		    break; 
+
+		case 'R': 
+
+		case 'r': 
+
+		    in.putback(type); 
+
+		    vehicle = new Racecar(in); 
+
+		    break; 
+
+		case 'L': 
+
+		case 'l': 
+
+		    in.putback(type); 
+
+		    vehicle = new Luxuryvan(in); 
+
+		    break; 
+
+		default: 
+
+		    std::string s(1, type); 
+
+		    std::string errMsg = "Unrecognized record type: [" + s + "]"; 
+
+		    in.clear(); 
+
+		    in.ignore(1000, '\n'); 
+
+		    throw errMsg; 
+
+		    break; 
+
+		} 
+
+	  return vehicle; 
+
+    } 
+
+In this workshop, we used a pointer of vehicles because the sdds::Vehicle class is a pure abstract 
+class, and we need to create an instance depending on the type of vehicle that is on the text file. If we 
+don’t use a pointer of vehicles, we cannot create an instance of a type of vehicle like if it’s a car, van, 
+race car, or a luxury van instance. 
