@@ -1,0 +1,79 @@
+/*
+Name: Keith Carlos
+Section: NBB
+Email: kwcarlos@myseneca.ca
+Student ID: 127638211
+
+I have done all the coding by myself and only copied the code that my professor
+provided to complete my workshops and assignments.
+*/
+
+
+In this workshop, I have learned how to implement association, aggregation, and composition. I 
+also learned how to parse a string and convert a string into an integer and store the parsed string to the 
+data in the class. Association is a service relationship, meaning each type is independent and can exist or 
+function without relying on another type. Composition is a relationship between classes where a class 
+cannot exist without another class, but the other class is useless without the other class. So, this means 
+that class A has complete ownership of class B. Aggregation, or the aggregator can exist or function very 
+well on its own with or without the existence of another object. In this workshop, an example of 
+composition can be found between the restaurant class and the reservation class, a reservation can only 
+belong to one restaurant. An example of aggregation is between the reservation class and the 
+ConfirmationSender class. The confirmation sender class can have many reservations, but it can exist 
+without any reservations, or it is complete without being used by any other object.The implementation 
+of the move and copy functions in a composition and aggregation is different, in a composition the move 
+assignment operator is implemented differently, the restaurant class dynamically stores a copy of all the 
+reservations. In aggregation, it does not make a copy of the reservations. To visualize my point, here is 
+an example from the workshop between the difference of composition and aggregation copy 
+assignment:  
+
+ 
+
+Restaurant& Restaurant::operator=(const Restaurant& res) { 
+
+	  if (this != &res) { 
+		for (int i = 0; i < m_numReservations; i++) delete m_res[i];
+		delete[] m_res; 
+
+  
+
+		m_numReservations = res.m_numReservations; 
+
+		m_res = new Reservation * [res.m_numReservations + 1]; 
+
+		for (int i = 0; i < res.m_numReservations; i++) { 
+
+		    m_res[i] = new Reservation(*res.m_res[i]); 
+
+		} 
+
+	  } 
+
+  
+
+	  return *this; 
+
+    } 
+
+ 
+
+ConfirmationSender& ConfirmationSender::operator=(const ConfirmationSender& cs) { 
+
+	  if (this != &cs) { 
+
+		delete[] m_res; 
+
+  
+
+		m_numRes = cs.m_numRes; 
+
+		m_res = new const Reservation * [cs.m_numRes + 1]; 
+
+		for (int i = 0; i < cs.m_numRes; i++) m_res[i] = cs.m_res[i]; 
+
+	  } 
+
+  
+
+	  return *this; 
+
+    } 

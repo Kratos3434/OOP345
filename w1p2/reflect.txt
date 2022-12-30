@@ -1,0 +1,33 @@
+/*
+Name: Keith Carlos
+Section: NBB
+Email: kwcarlos@myseneca.ca
+Student ID: 127638211
+
+I have done all the coding by myself and only copied the code that my professor
+provided to complete my workshops and assignments.
+*/
+
+Upon completing this workshop, I have learned how to implement the main function to accept 
+command line arguments and it is done by adding two parameters to the main function. The first
+parameter is the number of arguments the program will receive and the second parameter is a pointer 
+to an array of characters which is the name of the arguments passed to the program like this: “int 
+main(int argc,char* argv[])”. In the workshop there is a keyword “constexpr”, this indicates that the 
+value cannot be modified and it is computed at compile time rather than runtime, it is best used on 
+array sizes. External linkage is used as a global variable meaning you can declare it in a header file and 
+any file that includes your header can use and change the value of that variable, like for example, in the 
+workshop, we created two extern variables called extern double g_taxrate and extern double g_discount 
+and we used these variables in the main function without the extern keyword. An internal linkage can be 
+identified by adding the static keyword in a variable. We use static in a local variable and it means that 
+its lifetime last until the program ends or has done executing. In the workshop we used the static int 
+variable to count how many times the function has been called:  
+
+static unsigned int callCount = 0; 
+
+ callCount++; 
+
+The changes I have made in part two is just changing the brand variable from a static array of characters 
+to dynamic array of characters. I also added the rule of three, the copy constructor, copy assignment 
+operator and the destructor. It is important to add the rule of three to avoid any memory leaks and to 
+manage the resources. I also added a local dynamic array of characters in the read function to set the 
+brand dynamically.   

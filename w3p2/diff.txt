@@ -1,0 +1,14 @@
+In line number 67 of your output:
+The output should be:
+----------------------
+^
+But your output is: 
+43
+^
+
+Unmatched character details:
+The character in column 1 is supposed to be:
+  [-] ASCII code(45)
+but you printed
+  [4] ASCII code(52)
+

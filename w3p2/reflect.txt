@@ -1,0 +1,54 @@
+	/*
+Name: Keith Carlos
+Section: NBB
+Email: kwcarlos@myseneca.ca
+Student ID: 127638211
+
+I have done all the coding by myself and only copied the code that my professor
+provided to complete my workshops and assignments.
+*/
+
+ 
+
+In this workshop, I have learned how to implement class templates, specialize a member 
+function of a template and to inherit from a class template. A class template is just a class with 
+templates added to it, but it can adapt to any data types, or an object and you can also inherit from a 
+class template like for example: 
+
+template <typename T> 
+
+    class UniqueQueue:public Queue<T,100> { 
+
+    public: 
+
+	  bool push(const T& item) { 
+
+		bool added = false; 
+
+		for (unsigned i = 0; i < Queue<T, 100>::size(); i++) { 
+
+		    if (Queue<T, 100>::m_queue[i] == item) { 
+
+			  return added; 
+
+		    } 
+
+		} 
+
+		return Queue<T, 100>::push(item); 
+
+	  } 
+
+    }; 
+
+ 
+
+	Although I do not know why we should only put and implement class templates in the header 
+file, the only explanation I can come up with is that the compiler needs to know the implementation 
+along with what argument is needed like int or double in the header file to be able to instantiate a class 
+based on the argument. 
+
+	In the dictionary class I have overloaded some operators so it can work with the Queue class 
+template. I have overloaded the insertion and equal (==) operators. I need to add these overloads 
+because the dictionary class is an object, and it cannot be printed to the console or compared like 
+primitive data types.   

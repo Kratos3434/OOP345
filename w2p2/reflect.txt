@@ -1,0 +1,54 @@
+/*
+Name: Keith Carlos
+Section: NBB
+Email: kwcarlos@myseneca.ca
+Student ID: 127638211
+
+I have done all the coding by myself and only copied the code that my professor
+provided to complete my workshops and assignments.
+*/
+
+
+In this workshop, I have learned how to implement the move constructor and the move 
+assignment operator. The move assignment and move constructor is somewhat similar to the copy 
+constructor and copy assignment operator, but the difference is that the data in the object that we want 
+to move is moved to the current object or in simple term we are moving the ownership of the object to 
+the current object instead of just copying the data from the object hence the name ‘Move’, an example 
+of move constructor and move assignment from the workshop: 
+
+TennisLog::TennisLog(TennisLog&& tl) { 
+
+	  *this = std::move(tl); 
+
+    } 
+
+    TennisLog& TennisLog::operator=(TennisLog&& tl) { 
+
+	  if (this != &tl) { 
+
+		delete[] m_tennisMatch; 
+
+  
+
+		NOM = tl.NOM; 
+
+  
+
+		m_tennisMatch = tl.m_tennisMatch; 
+
+		tl.NOM = 0;
+		tl.m_tennisMatch = nullptr; 
+
+	  } 
+
+  
+
+	  return *this; 
+
+    } 
+
+ The difficulties I have faced during the workshop is that I doubted my capabilities or my knowledge 
+because when I debugged it is giving me a weird output so I thought that there was a gap in my 
+knowledge, but it turns out that when I submitted out of desperation my functions were right or my 
+implementations. Maybe it was giving me a weird output because the file is too big. I also learned briefly 
+about std::chrono on how to calculate the duration of a function. 
