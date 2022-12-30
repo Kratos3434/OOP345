@@ -1,0 +1,12 @@
+// Name: Keith Carlos
+// Seneca Student ID: 127638211
+// Seneca email: kwcarlos@myseneca.ca
+// Date of completion: 2022-11-30
+//
+// I confirm that I am the only author of this file
+//   and the content was created entirely by me.
+
+
+This project has tested my debugging skills. I sometimes doubt my ability to program, I sometimes doubt 
+my problem-solving skills, but time and time again I have proved myself wrong and maybe this is a 
+normal thing for programmers to feel, I think they call it impostor syndrome.  
